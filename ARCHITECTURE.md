@@ -2,6 +2,10 @@
 
 本插件将 ASL Harness 的个人工作环境投影到 DeepSeek Harness。ASL 的 Environment、Mode、Skill 和内容文件仍是工作真源；DSH 提供会话、模型、工具执行及权限界面。插件不建立第二套 Agent 引擎。
 
+## 从使用者到文件
+
+你在画板里改一个节点，或让 DeepSeek 修改当前文件，最后都由同一服务交给 ASL 核心写入 Environment。界面保存的是当前工作内容；宿主继续负责对话和执行。这里的“投影”指工作区呈现和受控文件访问，不等于自动完成 ASL 所有宿主适配。
+
 ```mermaid
 flowchart TB
   E[Environment：可迁移工作环境] --> M[Mode：场景、用途与技能组织]
@@ -37,5 +41,18 @@ flowchart TB
 | 专业技能发现与采用 | 搜索、仓库检查与采用工具；画框传递范围给原生会话 |
 | 实时填入节点 | 每次工具成功保存后刷新，不是模型 token 级流式生成整张图 |
 | 通用业务流转协议 | 复用 ASL 对象、引用与文件校验；跨系统自动调度、通用事务协议仍属后续目标 |
+
+## 与 ASL 总体框架怎样衔接
+
+| ASL 框架部分 | 本插件怎样使用 |
+| --- | --- |
+| Profile、正式 Skill Pool、Mode 与依赖闭包 | 连接已有 Environment，通过核心读取目录；不复制另一份业务库 |
+| Mode 的能力边界 | 用于工作区选择、技能组织和当前会话上下文；切换 Mode 不会自动重写 DSH 全局 Skill 发现目录 |
+| 核心 Guard | 复用内容保存的路径、引用、指纹与 Mermaid 校验；不把它扩称宿主全部工具的安全边界 |
+| 来源与采用 | 搜索、固定来源下载、检查及采用现有 Skill 包；来源升级和完整维护能力仍由 ASL 主框架提供 |
+| Git 与培养区 | 保持原文件和已有核心规则；插件不新增自动跨机同步、后台自我培养或独立审阅系统 |
+| Case 与业务产物 | 围绕当前 Mode 和 Skill 文件工作；不会因为 Mode 里有业务连线，就自动生成跨应用任务调度器 |
+
+Environment 由使用者维护。插件读写的三个本地路径来自 profile 配置；运行依赖及第一次使用步骤见 [安装指南](docs/INSTALLATION.md)。共享客户端源码固定在 `upstream`，构建从该目录取源码，维护约定见 [UPSTREAM.md](UPSTREAM.md)。
 
 初始愿景、实际能力与验收证据分别记录，不将愿景标成已实现。ASL 总体架构见 [架构真源](https://github.com/qihangzhang-272/asl-harness/blob/39a4735a8ba7c689c10581b517e075ad56fbde8c/docs/asl-architecture-views.md)。独立 `dsh-asl` 仓库是本插件的公开分发入口，核心继续依赖 ASL Harness。

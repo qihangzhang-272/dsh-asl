@@ -18,7 +18,11 @@
     "skills",
     "cordis.patch.yml",
     "README.md",
-    "ARCHITECTURE.md"
+    "ARCHITECTURE.md",
+    "README_EN.md",
+    "UPSTREAM.md",
+    "docs",
+    "assets/workspace.png"
   ],
   "scripts": {
     "build": "node build.mjs",
