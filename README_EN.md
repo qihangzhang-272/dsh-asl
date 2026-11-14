@@ -16,8 +16,8 @@ dsh-asl brings an [ASL Harness](https://github.com/qihangzhang-272/asl-harness) 
 
 1. Choose a Mode, or describe your goal to match an existing Mode by its name and purpose. Ambiguous matches remain a choice.
 2. Select, rename, move or connect nodes on the Mermaid canvas. You can also edit the source directly.
-3. Use the node's open button or `Ctrl+Enter` to enter a full file page: folders on the left, Markdown reading and editing on the right. Return to resume the canvas.
-4. Ask DeepSeek to read or change the current file through the native composer. The `asl_workspace` tool reads the latest content and saves through the same service used by the interface.
+3. Click a node to preview its skill folders and Markdown beside the canvas. Edit the text in place, save with `Ctrl+S`, or expand the preview. Right-click a file to copy its path, reveal it in the system file manager or open it in Better Sidebar. The node's open button and `Ctrl+Enter` still lead to the full file page.
+4. Ask DeepSeek to help through the native composer. Articles and other business outputs belong in the current project; skill files change only when you ask to change the skill itself. The progress window shows actual tool calls and saved outputs, which you can click to preview. Selecting a node does not mark it as running.
 5. Draw a region to discuss missing skills with DeepSeek. Skill discovery, source inspection and adoption use existing ASL services; the canvas updates after each successful save.
 
 For example, your writing Mode might bring research, interviews, writing and illustration together. Those skills must exist in your environment. The bundled starter example contains only product analysis and source research.
@@ -36,7 +36,7 @@ Edges can describe inputs, feedback or branches. They do not record task executi
 
 ## Get started on Windows
 
-Current release: **0.3.15**. Verified with **official Windows x64 DSH 0.2.1-rc.5** and the ASL App 0.5.19 portable core. Native macOS and Linux hosts have not been tested. The declared DSH range is `>=0.2.1-rc.5 <0.3.0-0`; only the version above has been tested. Store or GitHub installs mount safely before local paths are configured and show setup instructions. Reading and editing still require the ASL checkout, core and environment described below.
+Current release: **0.3.16**. The base plugin was verified with **official Windows x64 DSH 0.2.1-rc.5** and the ASL App 0.5.19 portable core. The new preview, inline editing and Better Sidebar integration were checked in an isolated official DSH Web profile. Native macOS and Linux hosts have not been tested. The declared DSH range is `>=0.2.1-rc.5 <0.3.0-0`; only the version above has been tested. Store or GitHub installs mount safely before local paths are configured and show setup instructions. Reading and editing still require the ASL checkout, core and environment described below.
 
 You need a working DeepSeek Harness installation, Git, an ASL source checkout and an ASL core. The portable core below does not require a separate Python installation or a plugin build.
 
@@ -69,7 +69,7 @@ With DSH still closed:
 
 ```powershell
 dsh --version
-dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.15/dsh-asl-workspace-0.3.15.tgz --config.auto-install-peers=false --ignore-scripts
+dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.16/dsh-asl-workspace-0.3.16.tgz --config.auto-install-peers=false --ignore-scripts
 ```
 
 If `dsh` is not on PATH, the verified official desktop distribution provides `resources/runtime/cli/bin/dsh.cmd` under its installation directory. In PowerShell, assign that full path to `$dsh` and use `& $dsh` in place of `dsh`.
@@ -124,7 +124,7 @@ This protects against stale writes through the shared tool. Other host file tool
 
 ## Canvas controls
 
-Click to select, double-click or press `F2` to rename, and use the node's open button or `Ctrl+Enter` to enter its files. Use `Shift` for multiple selection, `V`/`H` for select/pan, Space-drag to pan, and `Ctrl+wheel` to zoom. `Shift+1` fits the diagram, `Shift+0` returns to actual size, and `?` opens shortcut help.
+Click to select and preview, double-click or press `F2` to rename, and use the node's open button or `Ctrl+Enter` to enter its files. Use `Shift` for multiple selection, `V`/`H` for select/pan, Space-drag to pan, and `Ctrl+wheel` to zoom. `Shift+1` fits the diagram, `Shift+0` returns to actual size, and `?` opens shortcut help.
 
 Flowcharts support multi-node movement, copying, pasting and duplication. Other Mermaid types retain their own structure-editing behavior. Text editing and IME input keep their usual shortcuts. macOS mappings exist but have not been verified in a native host.
 
@@ -144,7 +144,7 @@ npm run test:unit
 npm pack --ignore-scripts
 ```
 
-Set `ASL_CORE_EXECUTABLE` to a complete ASL App's core and run `npm test` for integration checks. There are 47 unit checks, or 48 including the real core integration. CI runs the build, unit checks and packaging. [Verification notes](docs/VERIFICATION.md) distinguish release, installation and native-host evidence.
+Set `ASL_CORE_EXECUTABLE` to a complete ASL App's core and run `npm test` for integration checks. There are 61 unit checks, or 62 including the real core integration. CI runs the build, unit checks and packaging. [Verification notes](docs/VERIFICATION.md) distinguish release, installation and native-host evidence.
 
 Report issues with your OS, DSH version, plugin version and reproduction steps. Remove credentials and private content from logs before posting.
 

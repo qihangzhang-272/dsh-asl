@@ -1,6 +1,6 @@
 # 安装与排错
 
-第一次用，请从 [README 的开始使用](../README.md#开始使用) 按顺序操作。本页解释容易弄错的路径、命令和配置。以下命令面向 Windows PowerShell；当前实测组合为 DSH 0.2.1-rc.5、插件 0.3.15、ASL App 0.5.19／核心 0.4.12。
+第一次用，请从 [README 的开始使用](../README.md#开始使用) 按顺序操作。本页解释容易弄错的路径、命令和配置。以下命令面向 Windows PowerShell；当前实测组合为 DSH 0.2.1-rc.5、插件 0.3.16（新增界面在官方 Web 隔离配置中验证）、ASL App 0.5.19／核心 0.4.12。
 
 ## 从商店或 GitHub 直装
 
@@ -20,7 +20,7 @@ dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl --co
 | --- | --- | --- |
 | [dsh-asl 源码](https://github.com/qihangzhang-272/dsh-asl) | 提供插件桥接所需的 ASL 源码目录 | 用 `git clone --recurse-submodules`，确认 `upstream/desktop/bridge.cjs` 存在 |
 | [Windows ASL App ZIP](https://github.com/qihangzhang-272/asl-harness/releases/download/app-v0.5.19/ASL-Workspace-0.5.19-Windows-x64.zip) | 提供免装 Python 的核心及 Mermaid 校验运行时 | 完整解压，保留 `ASL Workspace` 整个文件夹 |
-| [插件 tgz 与 SHA256SUMS](https://github.com/qihangzhang-272/dsh-asl/releases/tag/v0.3.15) | 安装到 DSH profile | 使用 `dsh plugin` 安装，不需要手动解压到插件目录 |
+| [插件 tgz 与 SHA256SUMS](https://github.com/qihangzhang-272/dsh-asl/releases/tag/v0.3.16) | 安装到 DSH profile | 使用 `dsh plugin` 安装，不需要手动解压到插件目录 |
 | 自己的 Environment，或仓库样例的副本 | 保存技能、Mode 和实际修改 | 配置库的根目录，不要指到其中某个 Skill |
 
 ASL App ZIP 不是插件；插件 tgz 也不包含 ASL 核心。你只需解压 App 获取完整运行时，不必先在 ASL App 中登录、配置模型或运行它。模型在 DSH 里配置。
@@ -34,7 +34,7 @@ GitHub 自动生成的 `Source code` ZIP 不包含 `upstream` 子模块。若要
 ```powershell
 $dsh = 'C:/path/to/DeepSeek Harness/resources/runtime/cli/bin/dsh.cmd'
 & $dsh --version
-& $dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.15/dsh-asl-workspace-0.3.15.tgz --config.auto-install-peers=false --ignore-scripts
+& $dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.16/dsh-asl-workspace-0.3.16.tgz --config.auto-install-peers=false --ignore-scripts
 ```
 
 这是官方 DSH 0.2.1-rc.5 桌面版随附的路径结构；其他发行版以各自的 CLI 入口为准。不要为了得到 `dsh` 命令，再安装另一套不同版本的宿主。
@@ -92,7 +92,7 @@ Test-Path -LiteralPath $core
 按这几个实际结果判断：
 
 1. 左侧出现「ASL 工作区」，能进入 `Creator Studio`。样例会投影出「产品分析示例」和「通用能力」。
-2. 选中产品分析节点，点「打开技能 ↗」进入文件树与正文页面；返回后仍能看到画板。
+2. 单击产品分析节点，右侧显示文件树与 Markdown；点「编辑 Markdown」直接修改、保存。可收起或放大预览；点「打开技能 ↗」仍可进入完整文件页。
 3. 在样例文件中改一句话，保存、重新读取，文字保留。试一次图中文字修改，并确认保存成功。
 4. 在 DSH 已配置可用模型的前提下，让 DeepSeek 用 `asl_workspace` 读取当前文件。随后做一次小修改，确认工具成功回执和界面内容一致。
 

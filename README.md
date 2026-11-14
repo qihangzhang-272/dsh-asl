@@ -33,9 +33,9 @@ ASL 用 **Mode** 保存这样的工作场景。dsh-asl 给它一个可以直接�
 以“把投研材料整理成公众号文章”为例，你可以在自己的内容创作 Mode 中这样工作：
 
 1. **进入场景。** 手动选择 Mode，或输入这次的目标，让工作区按现有 Mode 的名称和用途匹配；有歧义时自己选。
-2. **看清关系。** 进入后就是 Mermaid 技能画板。单击选中，双击改名；拖动节点、连接技能，或直接编辑 Mermaid 原文。
-3. **打开内容。** 点节点旁的「打开技能 ↗」，或按 `Ctrl+Enter`，进入完整文件页。左边是文件树，右边可以阅读、编辑 Markdown；返回后回到上级画板。
-4. **交给 DeepSeek。** 在底部原生输入框说明要改哪里、改成什么。工作区把当前文件和选区提供给会话，DeepSeek 通过共享工具读取、保存，界面再显示实际写入的结果。
+2. **看清关系。** 进入后就是 Mermaid 技能画板。单击节点打开技能预览，双击改名；拖动节点、连接技能，或直接编辑 Mermaid 原文。
+3. **边看边改。** 单击节点，右侧显示技能目录与 Markdown。可以直接编辑原文、保存，或放大阅读；右键可复制路径、显示系统目录及打开原生 Sidebar。需要完整文件页时，点「打开技能 ↗」或按 `Ctrl+Enter`。
+4. **交给 DeepSeek。** 在底部原生输入框说明目标。业务文章与卡片保存在当前项目；需要改技能时才编辑技能文件。左下进度窗列出实际工具调用与已保存产物，点击文件即可预览；选中节点不会被当作正在执行。
 5. **需要新能力时再找。** 在画板上画框，把范围交给右侧会话，协助查找、检查和采用技能。每次成功保存后，画板随之更新。
 
 这个例子需要你自己的研究与创作技能。仓库附带的起步样例只包含产品分析和资料研究，用来熟悉安装与操作。
@@ -54,7 +54,7 @@ ASL 用 **Mode** 保存这样的工作场景。dsh-asl 给它一个可以直接�
 
 ## 开始使用
 
-当前公开版为 **0.3.15**，已在 **Windows x64、官方 DSH 0.2.1-rc.5** 验收。macOS／Linux 原生宿主尚未实测。宿主兼容声明为 `>=0.2.1-rc.5 <0.3.0-0`，这个范围不代表每个版本都已实测。商店／GitHub 直装后即使未配置本地路径，也能安全挂载；首次打开会提示准备 ASL 仓库和 Environment。实际读写仍需完成下面的配置。下面走 Windows 路径；完整解释和故障处理见[安装指南](docs/INSTALLATION.md)。
+当前版本为 **0.3.16**。此前基础版已在 **Windows x64、官方 DSH 0.2.1-rc.5** 验收；本轮新增预览、轻量编辑和 Sidebar 联动在官方 DSH Web 隔离配置中验证。macOS／Linux 原生宿主尚未实测。宿主兼容声明为 `>=0.2.1-rc.5 <0.3.0-0`，这个范围不代表每个版本都已实测。商店／GitHub 直装后即使未配置本地路径，也能安全挂载；首次打开会提示准备 ASL 仓库和 Environment。实际读写仍需完成下面的配置。下面走 Windows 路径；完整解释和故障处理见[安装指南](docs/INSTALLATION.md)。
 
 安装需要四样东西：能正常打开的 DeepSeek Harness、Git、完整的 ASL 源码目录，以及 ASL 核心程序。使用下面的便携核心时，普通使用者不需要另装 Python 或构建插件。
 
@@ -89,7 +89,7 @@ Copy-Item -LiteralPath ./upstream/examples/personal-environment -Destination ./m
 
 ```powershell
 dsh --version
-dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.15/dsh-asl-workspace-0.3.15.tgz --config.auto-install-peers=false --ignore-scripts
+dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.16/dsh-asl-workspace-0.3.16.tgz --config.auto-install-peers=false --ignore-scripts
 ```
 
 找不到 `dsh` 时，可使用官方桌面版安装目录下的 `resources/runtime/cli/bin/dsh.cmd`，具体写法见[安装指南](docs/INSTALLATION.md#找不到-dsh-命令)。这一步使用预构建包；安装期间保持 DSH 退出，并在完成下一步配置后再打开。
@@ -179,7 +179,7 @@ npm run test:unit
 npm pack --ignore-scripts
 ```
 
-设置 `ASL_CORE_EXECUTABLE` 为正式核心路径后，`npm test` 可运行含真实保存的集成检查。独立仓库有 47 项单元检查，含核心集成为 48 项；GitHub CI 运行构建、单元检查和打包。发布与首次安装实走记录见 [验证记录](docs/VERIFICATION.md)。
+设置 `ASL_CORE_EXECUTABLE` 为正式核心路径后，`npm test` 可运行含真实保存的集成检查。独立仓库有 61 项单元检查，含核心集成为 62 项；GitHub CI 运行构建、单元检查和打包。发布与首次安装实走记录见 [验证记录](docs/VERIFICATION.md)。
 
 欢迎提交 [Issue](https://github.com/qihangzhang-272/dsh-asl/issues) 或 PR。反馈问题时请写明 DSH 版本、插件版本、操作系统、复现步骤；日志里记得去掉密钥、私人路径和正文。
 
