@@ -1,14 +1,9 @@
-# v0.3.14
+# v0.3.15
 
-ASL Harness 的 DeepSeek Harness 原生工作区首次独立分发。
+修复 dsh-market 审核指出的首次安装问题。
 
-- Mode 用途匹配、可编辑 Mermaid 技能画板、完整文件树与 Markdown 编辑。
-- 原生 DeepSeek 会话与共享 `asl_workspace` 保存契约，检查上下文修订号、原文指纹和草稿状态。
-- Stitch 生成的浅色视觉、字体比例，以及缩放合成层模糊修复。
-- 固定 ASL 上游提交；预构建客户端可直接安装，无需安装脚本。
+- `sourceRoot`、`environment` 改为可选，ASL 领域服务延迟到实际使用时初始化。商店／GitHub 直装缺少本地路径或桥接文件时，插件仍可挂载，界面和工具返回明确的配置指引。
+- 补充 `engines.dsh: >=0.2.1-rc.5 <0.3.0-0`。包名保持 `dsh-asl-workspace`，市场目录 ID 同步对齐。
+- 更新中英文安装说明，区分「安装插件」和「配置可用的 ASL 环境」。直装不依赖子模块；实际业务读写仍依赖完整 ASL 仓库、核心和 Environment。
 
-需要已有 ASL 核心与 Environment；完整配置步骤见 README。包名 `dsh-asl-workspace`。
-
-验证：ASL 上游 39 项组件检查和 10 项插件检查通过；独立分发检出 47 项单元检查及含正式核心的 48 项检查通过。独立分发不运行 Electron 桌面宿主专属的子进程断连检查，上游已单独通过。Windows DSH 用户已确认视觉；macOS／Linux 原生宿主未实测。
-
-独立构建继承上游 lodash-es 4.18.1 固定规则。npm audit 当前无中／高／严重项，有 Mermaid/KaTeX 链的 2 个低风险报告；没有为发布而自动升级 Mermaid 大范围依赖。生产运行权限仍由 DSH 与用户配置管理。
+没有改动画板视觉、Mode 架构或保存保护。原有路径配置继续使用。Windows 官方 DSH 0.2.1-rc.5 为实测宿主，macOS／Linux 原生宿主未实测。

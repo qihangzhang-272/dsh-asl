@@ -36,7 +36,7 @@ Edges can describe inputs, feedback or branches. They do not record task executi
 
 ## Get started on Windows
 
-Current release: **0.3.14**. Verified with **official Windows x64 DSH 0.2.1-rc.5** and the ASL App 0.5.19 portable core. Native macOS and Linux hosts have not been tested.
+Current release: **0.3.15**. Verified with **official Windows x64 DSH 0.2.1-rc.5** and the ASL App 0.5.19 portable core. Native macOS and Linux hosts have not been tested. The declared DSH range is `>=0.2.1-rc.5 <0.3.0-0`; only the version above has been tested. Store or GitHub installs mount safely before local paths are configured and show setup instructions. Reading and editing still require the ASL checkout, core and environment described below.
 
 You need a working DeepSeek Harness installation, Git, an ASL source checkout and an ASL core. The portable core below does not require a separate Python installation or a plugin build.
 
@@ -69,7 +69,7 @@ With DSH still closed:
 
 ```powershell
 dsh --version
-dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.14/dsh-asl-workspace-0.3.14.tgz --config.auto-install-peers=false --ignore-scripts
+dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.15/dsh-asl-workspace-0.3.15.tgz --config.auto-install-peers=false --ignore-scripts
 ```
 
 If `dsh` is not on PATH, the verified official desktop distribution provides `resources/runtime/cli/bin/dsh.cmd` under its installation directory. In PowerShell, assign that full path to `$dsh` and use `& $dsh` in place of `dsh`.

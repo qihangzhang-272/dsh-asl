@@ -54,7 +54,7 @@ ASL 用 **Mode** 保存这样的工作场景。dsh-asl 给它一个可以直接�
 
 ## 开始使用
 
-当前公开版为 **0.3.14**，已在 **Windows x64、官方 DSH 0.2.1-rc.5** 验收。macOS／Linux 原生宿主尚未实测。下面走 Windows 路径；完整解释和故障处理见[安装指南](docs/INSTALLATION.md)。
+当前公开版为 **0.3.15**，已在 **Windows x64、官方 DSH 0.2.1-rc.5** 验收。macOS／Linux 原生宿主尚未实测。宿主兼容声明为 `>=0.2.1-rc.5 <0.3.0-0`，这个范围不代表每个版本都已实测。商店／GitHub 直装后即使未配置本地路径，也能安全挂载；首次打开会提示准备 ASL 仓库和 Environment。实际读写仍需完成下面的配置。下面走 Windows 路径；完整解释和故障处理见[安装指南](docs/INSTALLATION.md)。
 
 安装需要四样东西：能正常打开的 DeepSeek Harness、Git、完整的 ASL 源码目录，以及 ASL 核心程序。使用下面的便携核心时，普通使用者不需要另装 Python 或构建插件。
 
@@ -89,7 +89,7 @@ Copy-Item -LiteralPath ./upstream/examples/personal-environment -Destination ./m
 
 ```powershell
 dsh --version
-dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.14/dsh-asl-workspace-0.3.14.tgz --config.auto-install-peers=false --ignore-scripts
+dsh plugin --profile desktop add https://github.com/qihangzhang-272/dsh-asl/releases/download/v0.3.15/dsh-asl-workspace-0.3.15.tgz --config.auto-install-peers=false --ignore-scripts
 ```
 
 找不到 `dsh` 时，可使用官方桌面版安装目录下的 `resources/runtime/cli/bin/dsh.cmd`，具体写法见[安装指南](docs/INSTALLATION.md#找不到-dsh-命令)。这一步使用预构建包；安装期间保持 DSH 退出，并在完成下一步配置后再打开。
