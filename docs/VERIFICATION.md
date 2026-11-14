@@ -6,6 +6,24 @@
 - 独立分发构建通过，50 项单元检查通过；指定 ASL App 0.5.19 正式核心后，51 项检查全部通过，包含真实读写、非法 Mermaid 拒写和旧指纹拒写。
 - 安装包保留预构建客户端，未加入 ASL 核心或第二份技能内容。中英文说明补充商店直装和配置后的使用边界。
 
+### 官方 DSH 的 GitHub 直装演练
+
+Windows 官方 DSH 0.2.1-rc.5，独立 `DSH_HOME`、从官方 web 模板创建的 `market-check` 测试 profile；未修改用户桌面 profile。执行：
+
+```powershell
+dsh plugin --profile market-check add https://github.com/qihangzhang-272/dsh-asl --config.auto-install-peers=false --ignore-scripts
+dsh --profile market-check --host 127.0.0.1 --port 0 --no-open
+```
+
+| 场景 | 实测结果 |
+| --- | --- |
+| 按仓库地址安装 | 安装 0.3.15 成功；安装目录没有 `upstream/desktop/bridge.cjs`，预构建客户端存在 |
+| 不配置任何 ASL 路径 | 官方宿主正常监听；认证后 `catalog` 返回 HTTP 400、`ASL_SETUP_REQUIRED` 和配置步骤 |
+| `sourceRoot` 误填插件安装目录 | 官方宿主仍正常监听；`catalog` 返回 `ASL_SETUP_INVALID` 和缺失桥接文件的原因 |
+| 配置完整 ASL 仓库、正式核心和独立样例 | 通过真实插件 HTTP 接口读取 1 个 Mode、2 个技能；读取、保存 Mermaid、旧指纹拒写、恢复原文全部通过 |
+
+测试实例已退出，演练修改已恢复。这轮新增证据是官方宿主加载和实际接口读写；未重新操作原生桌面 UI，也未重复发送真实模型消息。GitHub CI 对修复代码的安装、构建、50 项单元检查和打包均通过。
+
 ## v0.3.14 发布验证
 
 - Windows 官方 DSH 中的画板视觉、字体和缩放清晰度已由用户确认；原生对话及共享工具写回在前序验收中通过。
