@@ -2,7 +2,7 @@
 
 ASL 上游： https://github.com/qihangzhang-272/asl-harness
 
-固定提交：`c1e115c7cbb7ec8e9a37f463e7f7c9d7afd286f8`（Git submodule upstream）。
+固定提交：`621db8baac21b95ae22cb06808db5f1e8f112bc0`（Git submodule upstream）。
 
 共享编辑器和插件客户端仅在上游维护；这里的 host.js、domain.cjs、execution.cjs、cordis.patch.yml 和 skills/ 与该提交逐字一致。build.mjs 从 upstream/plugins/dsh-asl-workspace/client/index.jsx 构建；仅调整入口和依赖解析目录。dist/client.js 是可安装的预构建产物，不需要用户执行构建脚本。
 
